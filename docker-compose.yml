@@ -1,14 +1,11 @@
-version: '3'
+version: "3"
 
 services:
   mariadb:
     image: mariadb:12.1.2-noble
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: example_root_password
-      MYSQL_DATABASE: example_database
-      MYSQL_USER: example_user
-      MYSQL_PASSWORD: example_password
+    env_file:
+      - .env
     ports:
       - "3306:3306"
     volumes:
@@ -18,11 +15,9 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.2.3-apache
-    restart: always
-    environment:
-      PMA_HOST: mariadb
-      PMA_USER: example_user
-      PMA_PASSWORD: example_password
+    restart: unless-stopped
+    env_file:
+      - .env
     ports:
       - "8090:80"
     depends_on:
