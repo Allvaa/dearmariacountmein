@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    image: mariadb:12.1.2-noble
+    image: mariadb:12.1.2
     restart: unless-stopped
     env_file:
       - .env
@@ -14,7 +14,7 @@ services:
       - db
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:5.2.3-apache
+    image: phpmyadmin/phpmyadmin:5.2.3
     restart: unless-stopped
     env_file:
       - .env
